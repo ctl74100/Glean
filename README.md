@@ -1,4 +1,4 @@
-# TurkeyApp
+# Team TurkeyApp
 
 ## Overview
 Team Turkey presents Glean, a change to charity program that will help you feel that little goodness, those warm fuzzies for putting your money to good use.
