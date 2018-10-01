@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+</head>
+<body>
+<h1 id='try'>404 - Not Found</h1>
+<p id='game' style='display:none; color:#aaa'>↑←↓→↑↓←←←→→→↓</p>
+<div id="out"></div>
+<div id="out2"></div>
+
+<script src="/js/jquery-2.1.4.js"></script>
+<script>
+    var keys = {};
+    var arr=[];
+    var cc=[38, 37, 40, 39, 38, 40, 37, 37, 37, 39, 39, 39, 40];
+    var h0= "<img src='http://40.media.tumblr.com/a9b6658f00b044a6e874d40e55f74be1/tumblr_nscrxyGtp81st5shfo1_1280.jpg'>";
+    var h1= "<img src='http://40.media.tumblr.com/b5e5276bcfaa9500fe1ed2239bbd3dc6/tumblr_nscrxyGtp81st5shfo3_1280.jpg'>";
+    var h2= "<img src='http://41.media.tumblr.com/9ea7ff9a777d808746af6c036fd588d4/tumblr_nscrxyGtp81st5shfo4_r3_1280.jpg'>";
+    var h3= "<img src='http://41.media.tumblr.com/08ffe1a1fbda457d8eb18653ff62b6d4/tumblr_nscrxyGtp81st5shfo2_1280.jpg'>";
+    var h_arr=[h0,h1,h2,h3];
+
+    $(document).keydown(function (e) {
+        keys[e.which] = true;
+        arr.push(e.which);
+        console.log("press: "+e.which);
+        printKeys();
+    });
+
+
+    function printKeys() {
+        for(var a=0;a<arr.length;a++){
+            if(cc[a]==arr[a]){
+                console.log('a:'+a);
+                if(a===cc.length-1){
+                    console.log('end');
+                    var html = h_arr[Math.floor(Math.random()*4)];
+                    $('#out2').html(html);
+                    arr=[];
+                    break;
+                }
+            }
+            else if(cc[0]==arr[a]){
+                arr=[cc[0]];
+            }
+            else{
+                console.log('go to []');
+                arr=[];
+                break;
+            }
+        }
+
+
+    }
+</script>
+<script>
+    $(function(){
+        $('#try').on('click',function(){
+            $('#game').fadeToggle(1000);
+        });
+    });
+</script>
+</body>
+</html>

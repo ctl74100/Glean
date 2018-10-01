@@ -1,0 +1,17 @@
+<div style="padding-left:5%;padding-top: 20px;height:500px" >
+    <div style="border-radius:10px; border:2px solid #009933; padding:20px;width:300px" align='center'>
+        <h1>{{title}}</h1>
+
+        <p>Welcome to {{title}}</p>
+
+        <div style="color:red">{{message}}</div><br>
+
+        <form method="post" action="/user/auth" style="width:220px">
+            <input class="form-control" type="text" name="name" placeholder="User Name" autocomplete="off"> <br><br>
+            <input class="form-control" type="password" name="pass" placeholder="Password" autocomplete="off"> <br><br>
+            <button class="btn btn-success">Login</button>
+        </form>
+        <br>
+        <a href="/user/check_user_info">Forgot Password</a>
+    </div>
+</div>

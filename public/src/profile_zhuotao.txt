@@ -1,0 +1,2 @@
+My name is Zhuotao Huang. I am a junior at Umass Amherst and I am currently pursuing a B.S. in Computer Science with a secondary major in Economics. My primary role in our team is front-end. I will be focusing on the design of the web application. I will make sure that the data coming from the backend gets displayed on the browser and also make sure the users can easily navigates the web and access the data.
+ 

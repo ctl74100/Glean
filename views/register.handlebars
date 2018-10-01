@@ -1,0 +1,26 @@
+<div style="margin-left:5%; padding-top:20px">
+
+    <h1>Sign Up</h1>
+    <p>Please fill in all the information.</p>
+    <div style="color:red">{{message}}</div><br>
+
+    <form method="post" action="/adduser" style="width:230px">
+        User Name: <br><input class="form-control" type="text" name="name" required>
+        Password:  <br><input class="form-control" type="password" name="pass" required>
+        Confirm Your Password:  <br><input class="form-control" type="password" name="cpass" required>
+        Email: <br><input class="form-control" type="text" name="email" required>
+        First Name: <br><input class="form-control" type="text" name="fname" required>
+        Last Name: <br><input class="form-control" type="text" name="lname" required>
+        Security Question: <br><input class="form-control" type="text" name="question" required>
+        Answer: <br><input class="form-control" type="text" name="answer" required>
+
+        <button class="btn btn-success">Sign Up</button>
+    </form>
+
+</div>
+
+<style>
+    input{
+        margin-bottom: 5px;
+    }
+</style>

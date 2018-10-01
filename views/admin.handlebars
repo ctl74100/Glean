@@ -1,0 +1,187 @@
+
+
+<div>
+    <div style="padding:20px;padding-bottom:0;background-color: #339933">
+        <p style="color:white;text-align:right;margin-bottom:0"><strong><font size = "7">Admin Page</font></strong></p>
+    </div>
+
+    <div style="margin-left:5%;margin-right:5%;padding:5px;" >
+        <p style="color:red">{{addadmin}}</p>
+        <p style='color:#00802d'><font size="6"><strong>All Transactions</strong></font></p>
+        <div style="height:400px;line-height:3em;overflow:auto;padding:5px;border-radius:10px;border: 2px solid #009933;LINE-HEIGHT:20px">
+
+            <div class="container" style='width:100%'>
+                <table class="table table-hover ">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>User ID</th>
+                        <th>Charity Name</th>
+                        <th>Round-Ups</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#if findcharity}}
+
+
+                        {{#each fff}}
+
+                            <tr>
+                                <td>{{created_at_year}}-{{created_at_month}}-{{created_at_date}}</td>
+                                <td>{{user_id}}</td>
+                                <td>{{charity_name}}</td>
+                                <td>${{total}}</td>
+                            </tr>
+                        {{/each}}
+                    {{else if finduser}}
+                        {{#each hhh}}
+
+                            <tr>
+                                <td>{{created_at_year}}-{{created_at_month}}-{{created_at_date}}</td>
+                                <td>{{user_id}}</td>
+                                <td>{{charity_name}}</td>
+                                <td>${{total}}</td>
+                            </tr>
+                        {{/each}}
+
+
+                    {{else}}
+                        {{#each translist}}
+                            <tr>
+                                <td>{{created_at_year}}-{{created_at_month}}-{{created_at_date}}</td>
+                                <td>{{user_id}}</td>
+                                <td>{{charity_name}}</td>
+                                <td>${{total}}</td>
+                            </tr>
+                        {{/each}}
+                    {{/if}}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div style="margin-left:5%;margin-right:10%;padding:5px;">
+        <span style="color:red">{{message}}</span>
+        <h4>Search for Transactions</h4>
+        <form class="form-inline" method="post" action="/admin/findcharity"><div class="form-group">
+            <select class="form-control" name="charity" >
+                <option value="none">--Please Select--</option>
+                <option value="The Task Force">The Task Force</option>
+                <option value="American Red Cross">American Red Cross</option>
+                <option value="United Way">United Way</option>
+                <option value="The Salvation Army">The Salvation Army</option>
+                <option value="Feeding America">Feeding America</option>
+            </select></div>
+            <button class="btn btn-primary">Search Charity</button>
+        </form>
+
+        <form class="form-inline" method="post" action="/admin/finduser"><div class="form-group">
+            <input class="form-control" type="text" name="username" placeholder="User Name"> </div>
+
+            <button class="btn btn-primary" >Search by Name</button>
+        </form>
+
+        <form class="form-inline" method="post" action="/admin/finduserbyid"><div class="form-group">
+            <input class="form-control" type="text" name="username" placeholder="User ID"> </div>
+
+            <button class="btn btn-primary" >Search By ID</button>
+        </form>
+    </div>
+
+
+    <div style="margin-left:5%;margin-right:5%;padding:5px">
+        <p style='color:#00802d;margin-top:30px'><font size="6"><strong>User List</strong></font></p>
+        <div style="height:400px;line-height:3em;overflow:auto;padding:5px;border-radius:10px;border: 2px solid #009933;LINE-HEIGHT:20px">
+
+            <div class="container" style='width:100%'>
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each list}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td>{{first}}</td>
+                            <td>{{last}}</td>
+                            <td>{{email}}</td>
+                        </tr>
+                    {{/each}}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div style="float:left">
+            <p style='color:#00802d;margin-top:30px'><font size="6"><strong>Add a New Admin</strong></font></p>
+            <div style="border-radius:10px;border: 2px solid #009933;width:280px;padding:20px">
+                <div align='center'>
+                    <form method="post" action="/admin/addadmin" style="width:230px">
+                        <input class="form-control" type="text" name="name" placeholder="Admin Name">
+                         <input class="form-control" type="password" name="pass" placeholder="Password">
+                      <input class="form-control" type="text" name="cpass" placeholder="Confirm Your Password">
+                         <input class="form-control" type="text" name="fname" placeholder="First Name">
+                          <input class="form-control" type="text" name="lname" placeholder="Last Name">
+                         <input class="form-control" type="text" name="email" placeholder="Email">
+                        <button class="btn btn-success">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div style="float:left;width: 800px;margin-left:50px">
+            <p style='color:#00802d;margin-top:30px'><font size="6"><strong>Admin List</strong></font></p>
+            <div style="height:317px;width:100%;line-height:3em;overflow:auto;padding:5px;border-radius:10px;border: 2px solid #009933;LINE-HEIGHT:20px;display: inline-block">
+
+                <div class="container" style='width:100%'>
+
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each list_a}}
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>{{first}}</td>
+                                <td>{{last}}</td>
+                                <td>{{email}}</td>
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</div>
+
+<style>
+    input{
+        margin:5px;
+    }
+    select{
+        margin:5px;
+    }
+</style>
+
+

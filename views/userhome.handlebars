@@ -1,0 +1,147 @@
+<div>
+    <img src="/imgs/header.png" alt="header" style="height:150px;width:100%;">
+
+    <div style="position:absolute; top:90px; left: 145px; color:white; ">
+        <p style="width:70%"><font size="4"><strong>“The purpose of life is not to be happy. It is to be useful, to be honorable, to be compassionate, to have it make some difference that you have lived and lived well.” <br>― Ralph Waldo Emerson</strong></font>
+        </p>
+    </div>
+
+    <div style="height:100px;background-color:#33cc33;padding:8px">
+     <!--   <a>
+            <div id="ok" style="margin:2px;margin-left:10px;float:right;height:80px;width:80px;background-color:rgba(255,255,255,0.5);border-radius:5px;padding:5px 15px;">
+                <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true" style="font-size:50px"></span>
+                <span style="text-align: center">PunchIn</span>
+            </div>
+        </a>
+        -->
+        <a>
+            <div id="pig" style="margin:2px;margin-left:10px;float:right;height:80px;width:80px;background-color:rgba(255,255,255,0.5);border-radius:5px;padding:5px 15px;">
+                <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true" style="font-size:50px"></span>
+                <span text-align: center>Donate</span>
+            </div >
+        </a>
+        <a>
+            <div id="sum" style="margin:2px;margin-left:10px;float:right;height:80px;width:80px;background-color:rgba(255,255,255,0.5);border-radius:5px;padding:5px 15px;">
+                <span class="glyphicon glyphicon glyphicon-user" aria-hidden="true" style="font-size:50px"></span>
+                <span style="margin-left:-5px">Summary</span>
+            </div>
+        </a>
+    </div>
+<!--
+    <div id="okdiv" style="height:60px;background-color:#00b33c;display:none">
+        <form method="post" action="/user/punch" style="width:100%;padding:7px;float:right; text-align: center">
+            <span style="margin: auto 100px;font-size:30px;color:green	"> <input type="checkbox" name="confirm" value="yes" ><strong> I donated something today!! :) </strong></span>
+            <button class="btn btn-danger btn-lg " style="float: right">Punch In!</button><span style="float:right;margin-right:20px;margin-top:12px;color:red">{{punchmessage}}</span>
+        </form>
+    </div>
+-->
+    <div id="sumdiv" style="height:120px;background-color:#00b33c;display:none">
+        <div style="margin-left:5%;padding:12px">
+            <div class="inlinebox" style="display:inline-block;height:80px;width:550px;margin:10px;background-color:rgba(255,255,255,0.5);border-radius:5px">
+                <div style="width:100%;display:inline-block;text-align: center" >
+                    <p style='font-size:50px'><strong>${{donated}}</strong></p>
+                    <p style="margin-top:-26px;margin-left:3px;font-size:12px">Donated</p>
+                </div>
+            </div>
+            <div class="inlinebox" style="display:inline-block;height:80px;width:550px;margin:10px;background-color:rgba(255,255,255,0.5);border-radius:5px">
+
+                <div style="width:100%;display:inline-block;text-align: center;" >
+                    <p style='font-size:50px'><strong>${{available}}</strong></p>
+                    <p style="margin-top:-26px;font-size:12px" >Round-Ups Balance</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dondiv" style="height:335px;background-color:#00b33c;display:none;overflow:auto">
+        <div style="margin-left:5%;padding:12px">
+            <div class="inlinebox" style="display:inline-block;height:200px;width:200px;margin:10px;background-color:rgba(255,255,255,0.5);border-radius:5px"><a href="https://www.redcross.org" target="_blank"><img src="/imgs/1.png" ></a></div>
+            <div class="inlinebox" style="display:inline-block;height:200px;width:200px;margin:10px;background-color:rgba(255,255,255,0.5);border-radius:5px"><a href="http://www.taskforce.org/" target="_blank"><img src="/imgs/2.png"></a></div>
+            <div class="inlinebox" style="display:inline-block;height:200px;width:200px;margin:10px;background-color:rgba(255,255,255,0.5);border-radius:5px"><a href="http://www.unitedway.org/" target="_blank"><img src="/imgs/3.png"></a></div>
+            <div class="inlinebox" style="display:inline-block;height:200px;width:200px;margin:10px;background-color:rgba(255,255,255,0.5);border-radius:5px"><a href="http://www.feedingamerica.org/" target="_blank"><img src="/imgs/4.png"></a></div>
+            <div class="inlinebox" style="display:inline-block;height:200px;width:200px;margin:10px;background-color:rgba(255,255,255,0.5);border-radius:5px"><a href="http://www.salvationarmy.org/" target="_blank"><img src="/imgs/5.png"></a></div>
+
+            <div >
+                <div class="inlinebox1" style="display:inline-block;height:80px;width:200px;margin:0 10px;background-color:rgba(255,255,255,0.5);border-radius:5px">
+                    <form action="/user/donate" method="post">
+                        <input class="form-control d" name="m" type="number" placeholder="Dollars" min="1">
+                        <button class="btn btn-danger">Donate</button>
+                    </form>
+                </div>
+                <div class="inlinebox1" style="display:inline-block;height:80px;width:200px;margin:0 10px;background-color:rgba(255,255,255,0.5);border-radius:5px"><form method="post" action="/user/donate">
+                    <input class="form-control d" name="m" type="number" placeholder="Dollars" min="1">
+                    <button class="btn btn-danger">Donate</button>
+                </form></div>
+                <div class="inlinebox1" style="display:inline-block;height:80px;width:200px;margin:0 10px;background-color:rgba(255,255,255,0.5);border-radius:5px"><form method="post" action="/user/donate">
+                    <input class="form-control d" name="m" type="number" placeholder="Dollars" min="1">
+                    <button class="btn btn-danger">Donate</button>
+                </form></div>
+                <div class="inlinebox1" style="display:inline-block;height:80px;width:200px;margin:0 10px;background-color:rgba(255,255,255,0.5);border-radius:5px"><form method="post" action="/user/donate">
+                    <input class="form-control d" name="m" type="number" placeholder="Dollars" min="1">
+                    <button class="btn btn-danger">Donate</button>
+                </form></div>
+                <div class="inlinebox1" style="display:inline-block;height:80px;width:200px;margin:0 10px;background-color:rgba(255,255,255,0.5);border-radius:5px"><form method="post" action="/user/donate">
+                    <input class="form-control d" name="m" type="number" placeholder="Dollars" min="1">
+                    <button class="btn btn-danger">Donate</button>
+                </form></div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <div style="position:absolute; top:130px; right: 10px; color:white;  padding:5px" >
+        <p><font size="7">Hello, {{name}}!</font></p>
+    </div>
+
+    <div style="margin-left:10%;margin-right:10%;margin-top:50px;padding:20px">
+        <p><font size="6"><strong>Easy, safe, and secure.</strong></font></p>
+        <p><font size="5">    Glean, a change to charity program that will help you feel that little goodness, those warm fuzzies for putting your money to good use. You make a purchase, Glean rounds up the cost, subtracts the actual purchase from the cost, and that difference goes to a charity of your choice! Glean does this by integrating into your bank account and keeping track of the charges you make. </font></p>
+    </div>
+    <div style="margin-left:10%;margin-right:10%;margin-top:50px;padding:20px">
+        <p><font size="6"><strong>See the impact you are making.</strong></font></p>
+        <p><font size="5">Every time you makes a purchase, the difference in change to the nearest dollar is donated to a charity of choice. Glean takes away the hassles of dealing with change when balancing checkbooks, and helps anyone with credit or debit cards easily give to charities in need. These microdonations add up overtime, and Glean will elegantly present donations accumulated to better help you see the impact you are making.</font></p>
+    </div>
+
+    <div style="margin-left:10%;margin-right:10%;margin-top:50px;padding:20px">
+        <p><font size="6"><strong>Use Glean today!</strong></font></p>
+        <p><font size="5">Glean can be used whenever you make a credit/debit card transation at your favorite retailer! For personal use, you can use Glean when doing everyday purchases, from shopping for groceries to taking the family out for dinner. For work, companies can have their employees use Glean while using their corporate cards, and your company can show off its philanthropic side. Glean is a versitile application in corporating all aspects of your life for charitable giving!</font></p>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $('#sum').on('click',function(){
+            $('#sumdiv').slideToggle(1000);
+        });
+    });
+</script>
+
+<script>
+    $(function(){
+        $('#pig').on('click',function(){
+            $('#dondiv').slideToggle(1000);
+        });
+    });
+</script>
+
+<script>
+    $(function(){
+        $('#ok').on('click',function(){
+            $('#okdiv').slideToggle(1000);
+        });
+    });
+</script>
+
+
+<style>
+    .inlinebox1{
+        padding:6px;
+        text-align: center;
+    }
+
+    .d{
+        margin-bottom:2px;
+    }
+</style>
+

@@ -1,0 +1,184 @@
+<div>
+	<div style="padding:20px;padding-bottom:0;background-color: #339933">
+		<p style="color:white;text-align:right;margin-bottom:0"><strong><font size = "7">{{name}} - Dashboard</font></strong></p>
+	</div>
+	
+	<div style="margin-left:5%;margin-right:5%;padding:5px;" >
+	<p style="color:red">{{addadmin}}</p>
+		<p style='color:#00802d'><font size="6"><strong>All Transactions</strong></font></p>
+		<div style="height:400px;line-height:3em;overflow:auto;padding:5px;border-radius:10px;border: 2px solid #009933;LINE-HEIGHT:20px"> 
+
+<div class="container" style='width:100%'>      
+  <table id = "myTable" class="table table-hover ">
+    <thead>
+      <tr>
+        <th>Charity Name</th>
+        <th>Date</th>
+        <th>Extra Change</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {{#if findcharity}}
+
+			
+			{{#each ttt}}
+
+      <tr>
+		<td>{{charity_name}}</td>
+        <td>{{created_at_year}}-{{created_at_month}}-{{created_at_date}}</td>
+        <td>${{total}}</td>
+        
+      </tr>
+			{{/each}}
+		
+		
+		{{else}}
+		{{#each transaction}}
+		<tr>
+        <td>{{charity_name}}</td>
+        <td>{{created_at_year}}-{{created_at_month}}-{{created_at_date}}</td>
+        <td>${{total}}</td>
+        
+		 </tr>
+      {{/each}}
+		{{/if}}
+    </tbody>
+  </table>
+</div>
+		<!--
+		<ul >
+		{{#if findcharity}}
+			{{#each ttt}}
+			<li>
+				<strong>Charity Name: </strong> {{charity_name}}<br/>
+				<strong>Date:</strong> {{created_at_year}}-{{created_at_month}}-{{created_at_date}}<br/>
+				<strong>Extra Change: $</strong> {{total}}<br/>
+				<strong>Website: </strong>{{website}}<br><br>
+				
+			</li>
+			{{/each}}
+
+
+		{{else}}
+		{{#each transaction}}
+			<li>
+				<strong>Charity Name: </strong> {{charity_name}}<br/>
+				<strong>Date:</strong> {{created_at_year}}-{{created_at_month}}-{{created_at_date}}<br/>
+				<strong>Extra Change: </strong> {{website}}<br/>
+				<strong>Website: </strong>${{total}}<br><br>
+				
+			</li>
+		{{/each}}
+		{{/if}}
+		</ul>
+		-->
+		</div>
+	</div>
+	
+	
+	
+	<div style="margin-left:5%;margin-right:10%;padding:5px;">
+		<span style="color:red">{{message}}</span>
+		<h4>Search for Transactions</h4>
+		<form class="form-inline" method="post" action="/user/findcharity"><div class="form-group">
+		<input class="form-control" type="text" name="charity" placeholder='Charity Name'> <br></div>
+		<button class="btn btn-primary">Search Charity</button>
+		</form><br>
+	</div>
+	
+	
+	
+	<p style='color:#00802d;margin-left:5%;margin-right:10%;margin-top:1%;padding:5px;'><font size="6"><strong>Visualized Result</strong></font></p>
+	<div style="margin-left:15%;margin-right:10%;margin-top:1%;padding:5px;">
+        <!-- pie chart canvas element -->
+        <canvas id="pieDonut" width="600" height="400" style="float:left"></canvas>
+		<canvas id="bar" width="600" height="400" style="float:left"></canvas>
+        <script>
+		
+			//total 10 colors for up to ten charities. If there are more than 10, this needs to be modified!!
+			var coolColors = ["#ADFF2F","#008000","#87CEFA","#20B2AA","#FF8153","#FFEA88","#878BB6","#4ACAB4", "#2E8B57","#FFC0CB"];
+			var colorIndex = 0;
+			var x = document.getElementById("myTable").rows.length;
+			var store = [];
+			for(var i = 1; i < x; i ++)
+			{
+				var y = document.getElementById("myTable").rows[i].cells[0].innerHTML;
+				
+				if(store.length == 0)
+				{
+				
+					var newEntryValue = Number(document.getElementById("myTable").rows[i].cells[2].innerHTML.substring(1));
+					store.push({value: newEntryValue, color: coolColors[colorIndex++], label: y });
+					
+				}
+				else{
+					var check = 0;
+					store.forEach(function(j){
+						if( y == j.label && check == 0){
+							j.value += Number(document.getElementById("myTable").rows[i].cells[2].innerHTML.substring(1));
+							check = 1;
+							}
+						});
+					if(check == 0){
+					
+						var newEntryValue = Number(document.getElementById("myTable").rows[i].cells[2].innerHTML.substring(1));
+						store.push({value: newEntryValue, color: coolColors[colorIndex++],label: y });
+					
+					}
+				
+				}
+			}
+			
+			
+            // pie chart options
+            var pieOptions = {
+                 segmentShowStroke : true,
+				 animationSteps : 125,
+				 percentageInnerCutout : 25,
+                 animateScale : true
+				 }
+            // get pie chart canvas
+            var pieDonut= document.getElementById("pieDonut").getContext("2d");
+            // draw pie chart
+            new Chart(pieDonut).Pie(store, pieOptions);
+			
+						
+			/////////////////BAR////////////////////////
+			
+			barLabel = [];
+			barData = [];
+		
+			
+			for(var z = 0; z <store.length;z++)
+			{
+				barLabel.push(store[z].label);
+				barData.push(store[z].value);
+			
+			}
+			
+
+			
+            var data = {
+			labels: barLabel,
+			datasets: [
+				{
+				label: "My First dataset",
+				fillColor: "rgba(151,187,205,0.5)",
+				strokeColor: "rgba(151,187,205,0.8)",
+				highlightFill: "rgba(151,187,205,0.75)",
+				highlightStroke: "rgba(151,187,205,1)",
+				data: barData
+				}
+			]
+		};
+			
+            // get bar chart canvas
+            var bar= document.getElementById("bar").getContext("2d");
+            // draw bar chart
+            new Chart(bar).Bar(data, {barShowStroke: false});
+        </script>
+	</div>
+	<div style="clear:both;"></div>
+
+	</div>
